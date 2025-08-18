@@ -1,0 +1,157 @@
+
+<app-header></app-header>
+<section class="breadcrumb_part breadcrumb_bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="breadcrumb_iner">
+          <div class="breadcrumb_iner_item">
+            <h2>Contact</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- breadcrumb end-->
+
+<!-- contact section start -->
+<section class="contact-section section_padding">
+  <div class="container">
+    <!-- Google Maps placeholder - you can add Google Maps integration later -->
+    <div class="d-none d-sm-block mb-5 pb-4">
+      <div id="map" style="height: 480px; background-color: #f8f9fa; display: flex; align-items: center; justify-content: center; border-radius: 8px;">
+        <p class="text-muted">Interactive Map - Google Maps Integration Placeholder</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <h2 class="contact-title">Get in Touch</h2>
+      </div>
+      
+      <!-- Contact Form -->
+      <div class="col-lg-8">
+        <!-- Success/Error Messages -->
+        <div *ngIf="submitMessage" 
+             class="alert" 
+             [class.alert-success]="submitSuccess" 
+             [class.alert-danger]="!submitSuccess">
+          {{ submitMessage }}
+        </div>
+
+        <form [formGroup]="contactForm" 
+              (ngSubmit)="onSubmit()" 
+              class="form-contact contact_form" 
+              novalidate>
+          <div class="row">
+            <!-- Message Field -->
+            <div class="col-12">
+              <div class="form-group">
+                <textarea 
+                  class="form-control w-100" 
+                  formControlName="message"
+                  id="message" 
+                  cols="30" 
+                  rows="9"
+                  placeholder="Enter Message"
+                  [class.is-invalid]="getFieldError('message')">
+                </textarea>
+                <div *ngIf="getFieldError('message')" class="invalid-feedback">
+                  {{ getFieldError('message') }}
+                </div>
+              </div>
+            </div>
+
+            <!-- Name Field -->
+            <div class="col-sm-6">
+              <div class="form-group">
+                <input 
+                  class="form-control" 
+                  formControlName="name"
+                  id="name" 
+                  type="text" 
+                  placeholder="Enter your name"
+                  [class.is-invalid]="getFieldError('name')">
+                <div *ngIf="getFieldError('name')" class="invalid-feedback">
+                  {{ getFieldError('name') }}
+                </div>
+              </div>
+            </div>
+
+            <!-- Email Field -->
+            <div class="col-sm-6">
+              <div class="form-group">
+                <input 
+                  class="form-control" 
+                  formControlName="email"
+                  id="email" 
+                  type="email" 
+                  placeholder="Enter email address"
+                  [class.is-invalid]="getFieldError('email')">
+                <div *ngIf="getFieldError('email')" class="invalid-feedback">
+                  {{ getFieldError('email') }}
+                </div>
+              </div>
+            </div>
+
+            <!-- Subject Field -->
+            <div class="col-12">
+              <div class="form-group">
+                <input 
+                  class="form-control" 
+                  formControlName="subject"
+                  id="subject" 
+                  type="text" 
+                  placeholder="Enter Subject"
+                  [class.is-invalid]="getFieldError('subject')">
+                <div *ngIf="getFieldError('subject')" class="invalid-feedback">
+                  {{ getFieldError('subject') }}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="form-group mt-3">
+            <button 
+              type="submit" 
+              class="button button-contactForm btn_1"
+              [disabled]="isSubmitting">
+              <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm me-2" role="status"></span>
+              {{ isSubmitting ? 'Sending...' : 'Send Message' }}
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Contact Information -->
+      <div class="col-lg-4">
+        <div class="media contact-info">
+          <span class="contact-info__icon"><i class="ti-home"></i></span>
+          <div class="media-body">
+            <h3>{{ contactInfo.address.title }}</h3>
+            <p>{{ contactInfo.address.details }}</p>
+          </div>
+        </div>
+        
+        <div class="media contact-info">
+          <span class="contact-info__icon"><i class="ti-tablet"></i></span>
+          <div class="media-body">
+            <h3>{{ contactInfo.phone.number }}</h3>
+            <p>{{ contactInfo.phone.hours }}</p>
+          </div>
+        </div>
+        
+        <div class="media contact-info">
+          <span class="contact-info__icon"><i class="ti-email"></i></span>
+          <div class="media-body">
+            <h3>{{ contactInfo.email.address }}</h3>
+            <p>{{ contactInfo.email.note }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- contact section end -->

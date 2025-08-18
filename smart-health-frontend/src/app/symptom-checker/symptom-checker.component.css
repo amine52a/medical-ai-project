@@ -1,0 +1,201 @@
+/* Main container styling */
+.symptom-checker {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border: 1px solid #e0e0e0;
+}
+
+/* Header styling */
+.symptom-checker h2 {
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.symptom-checker h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background-color: #3498db;
+}
+
+/* Form styling */
+.symptom-checker form {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1.5rem;
+}
+
+.symptom-checker label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.symptom-checker input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  transition: border-color 0.3s;
+}
+
+.symptom-checker input:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+/* Button styling */
+.symptom-checker button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  display: block;
+  width: 100%;
+  font-weight: 500;
+}
+
+.symptom-checker button:hover {
+  background-color: #2980b9;
+  transform: translateY(-1px);
+}
+
+.symptom-checker button:active {
+  transform: translateY(0);
+}
+
+/* Loading state */
+.symptom-checker .loading {
+  text-align: center;
+  padding: 1rem;
+  color: #3498db;
+  font-weight: 500;
+}
+
+/* Results styling */
+.symptom-checker .predictions {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  margin-top: 1rem;
+}
+
+.symptom-checker h3 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+.symptom-checker ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.symptom-checker li {
+  padding: 0.8rem;
+  margin-bottom: 0.5rem;
+  background-color: #f8f9fa;
+  border-left: 4px solid #3498db;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.symptom-checker li:nth-child(odd) {
+  background-color: #f1f8fe;
+}
+
+/* Error message styling */
+.symptom-checker .error {
+  color: #e74c3c;
+  background-color: #fdecea;
+  padding: 1rem;
+  border-radius: 4px;
+  margin-top: 1rem;
+  border-left: 4px solid #e74c3c;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .symptom-checker {
+    padding: 1rem;
+    margin: 1rem;
+  }
+  
+  .symptom-checker h2 {
+    font-size: 1.5rem;
+  }
+}
+/* Medical icon styling */
+.medical-icon {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #3498db;
+}
+
+/* Button with icon */
+.button-icon {
+  margin-left: 8px;
+}
+
+/* Loading spinner */
+.spinner {
+  border: 3px solid rgba(52, 152, 219, 0.2);
+  border-radius: 50%;
+  border-top: 3px solid #3498db;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Disease name styling */
+.disease-name {
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.confidence-level {
+  color: #7f8c8d;
+  font-size: 0.9rem;
+}
+
+/* Error icon */
+.error-icon {
+  margin-right: 8px;
+}

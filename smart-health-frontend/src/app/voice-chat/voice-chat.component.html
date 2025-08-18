@@ -1,0 +1,78 @@
+<app-header></app-header>
+<div class="chat-container">
+  <div class="chat-header">
+    <h2>Voice Assistant</h2>
+    <div class="status-indicator">
+      <span class="status-dot" [class.listening]="isListening"></span>
+      <span class="status-text">{{ isListening ? 'Listening...' : 'Ready' }}</span>
+    </div>
+  </div>
+
+  <!-- Speech Error Display -->
+  <div *ngIf="speechError" class="speech-error">
+    <div class="error-content">
+      <span class="error-icon">⚠️</span>
+      <span class="error-text">{{ speechError }}</span>
+      <button class="error-close" (click)="clearSpeechError()">×</button>
+    </div>
+  </div>
+
+  <!-- Browser Support Warning -->
+  <div *ngIf="!isSupported" class="browser-warning">
+    <div class="warning-content">
+      <span class="warning-icon">🌐</span>
+      <span class="warning-text">Speech recognition is not supported in this browser. Please use Chrome, Edge, or Safari.</span>
+    </div>
+  </div>
+
+  <div class="messages">
+    <div *ngFor="let msg of messages" [class.user]="msg.sender === 'You'" [class.ai]="msg.sender === 'AI'">
+      <div class="message-content">
+        <div class="message-sender">{{ msg.sender }}</div>
+        <div class="message-text">{{ msg.text }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="voice-controls">
+    <button class="voice-btn" 
+            (mousedown)="startListening()" 
+            (mouseup)="stopListening()"
+            [class.active]="isListening"
+            [disabled]="!isSupported">
+      🎤
+      <span class="pulse-ring" *ngIf="isListening"></span>
+    </button>
+    
+    <!-- Microphone Test Button -->
+    <button class="test-mic-btn" 
+            (click)="testMicrophone()"
+            [disabled]="!isSupported">
+      🧪 Test Mic
+    </button>
+    
+    <!-- Alternative Recording Button -->
+    <button class="alt-record-btn" 
+            (click)="startAlternativeRecording()"
+            [disabled]="!isSupported">
+      🎵 Alt Record
+    </button>
+    
+    <div class="voice-instruction">
+      <span *ngIf="isSupported">Press and hold to speak</span>
+      <span *ngIf="!isSupported">Speech recognition not available</span>
+    </div>
+    
+    <!-- Alternative text input -->
+    <div class="text-input-section">
+      <input #textInput type="text" 
+             placeholder="Or type your message here..." 
+             class="text-input"
+             (keyup.enter)="sendTextToBackend($any($event.target).value); $any($event.target).value = ''">
+      <button class="send-btn" 
+              (click)="sendTextToBackend(textInput.value); textInput.value = ''">
+        Send
+      </button>
+    </div>
+  </div>
+</div>

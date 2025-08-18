@@ -1,0 +1,99 @@
+<section class="container">
+  <!-- Popup notification -->
+  <div class="popup" *ngIf="showPopup" [ngClass]="submitSuccess ? 'success' : 'error'">
+    {{ submitMessage }}
+  </div>
+
+  <header>Create Account</header>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="form">
+
+    <!-- Full Name -->
+    <div class="input-box">
+      <label>Full Name</label>
+      <input type="text" formControlName="fullName" placeholder="Enter full name" />
+    </div>
+
+    <!-- Email -->
+    <div class="input-box">
+      <label>Email</label>
+      <input type="email" formControlName="email" placeholder="Enter email" />
+    </div>
+
+    <!-- Password -->
+    <div class="input-box">
+      <label>Password</label>
+      <input type="password" formControlName="password" placeholder="Enter password" />
+    </div>
+
+    <!-- Confirm Password -->
+    <div class="input-box">
+      <label>Confirm Password</label>
+      <input type="password" formControlName="confirmPassword" placeholder="Confirm password" />
+    </div>
+
+    <!-- Age & Weight -->
+    <div class="column">
+      <div class="input-box">
+        <label>Age</label>
+        <input type="number" formControlName="age" placeholder="Enter age" />
+      </div>
+      <div class="input-box">
+        <label>Weight (kg)</label>
+        <input type="number" formControlName="weight" placeholder="Enter weight" />
+      </div>
+    </div>
+
+    <!-- Height -->
+    <div class="input-box">
+      <label>Height (cm)</label>
+      <input type="number" formControlName="height" placeholder="Enter height" />
+    </div>
+
+    <!-- Gender -->
+    <div class="gender-box">
+      <h3>Gender</h3>
+      <div class="gender-option">
+        <label><input type="radio" formControlName="gender" value="Male" /> Male</label>
+        <label><input type="radio" formControlName="gender" value="Female" /> Female</label>
+        <label><input type="radio" formControlName="gender" value="Other" /> Other</label>
+      </div>
+    </div>
+
+    <!-- Country -->
+    <div class="input-box">
+      <label>Country</label>
+      <input type="text" formControlName="country" placeholder="Enter country" />
+    </div>
+
+    <!-- Mental Goals -->
+    <div class="input-box">
+      <label>Mental Goals</label>
+      <input type="text" formControlName="mentalGoals" placeholder="e.g. Reduce stress" />
+    </div>
+
+    <!-- Conditions -->
+    <div class="input-box">
+      <label>Conditions</label>
+      <input type="text" formControlName="conditions" placeholder="e.g. Anxiety" />
+    </div>
+
+    <!-- Contact Method -->
+    <div class="input-box">
+      <label>Preferred Contact Method</label>
+      <select formControlName="contactMethod">
+        <option value="email">Email</option>
+        <option value="phone">Phone</option>
+      </select>
+    </div>
+
+    <!-- Accept Privacy -->
+    <div class="input-box">
+      <label>
+        <input type="checkbox" formControlName="acceptPrivacy" /> I accept the privacy policy
+      </label>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" [disabled]="registerForm.invalid">Register</button>
+  </form>
+</section>

@@ -1,0 +1,41 @@
+<!-- login.component.html -->
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-header">
+      <h2>Patient Login</h2>
+      <div class="medical-icon">⚕</div>
+    </div>
+    
+    <div class="input-group">
+      <label for="email">Email</label>
+      <div class="input-with-icon">
+        <input [(ngModel)]="email" id="email" placeholder="Enter your email" type="email" />
+        <span class="input-icon">✉</span>
+      </div>
+    </div>
+    
+    <div class="input-group">
+      <label for="password">Password</label>
+      <div class="input-with-icon">
+        <input [(ngModel)]="password" id="password" placeholder="Enter your password" type="password" />
+        <span class="input-icon">🔒</span>
+      </div>
+    </div>
+    
+    <button class="login-btn" (click)="onLogin()">
+      <span class="btn-icon">→</span>
+      <span class="btn-text">Login</span>
+    </button>
+    
+    <div class="notification-container">
+      <div *ngIf="showPopup" [class]="submitSuccess ? 'success-notification' : 'error-notification'">
+        {{ submitMessage }}
+      </div>
+      <div *ngIf="error" class="error-notification">{{ error }}</div>
+    </div>
+    
+    <div class="register-prompt">
+      New patient? <a href="/register" class="register-link">Create an account</a>
+    </div>
+  </div>
+</div>

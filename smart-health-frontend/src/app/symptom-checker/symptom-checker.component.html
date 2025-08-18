@@ -1,0 +1,42 @@
+<app-header></app-header>
+
+<div class="symptom-checker">
+  <h2>Symptom Checker</h2>
+  <div class="medical-icon">🩺</div>
+  
+  <form (submit)="onSubmit()">
+    <label for="symptomsInput">Enter your symptoms (comma separated):</label>
+    <input
+      id="symptomsInput"
+      type="text"
+      [(ngModel)]="symptomInput"
+      name="symptoms"
+      placeholder="e.g. fever, cough, headache"
+      required
+    />
+    <button type="submit">
+      <span class="button-text">Check Symptoms</span>
+      <span class="button-icon">🔍</span>
+    </button>
+  </form>
+
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    Analyzing your symptoms...
+  </div>
+
+  <div *ngIf="predictions && predictions.length" class="predictions">
+    <h3>Possible Conditions</h3>
+    <ul>
+      <li *ngFor="let prediction of predictions">
+        <span class="disease-name">{{ prediction.disease }}</span>
+        <span class="confidence-level">Confidence: {{ prediction.confidence | percent:'1.0-2' }}</span>
+      </li>
+    </ul>
+  </div>
+
+  <div *If="error" class="error">
+    <span class="error-icon">⚠️</span>
+    {{ error }}
+  </div>
+</div>
