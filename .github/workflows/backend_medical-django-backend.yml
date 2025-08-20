@@ -61,4 +61,4 @@ jobs:
         id: deploy-to-webapp
         with:
           app-name: 'medical-django-backend'
-          slot-name: 'Production'
+
