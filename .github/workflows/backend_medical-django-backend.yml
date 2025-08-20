@@ -1,4 +1,4 @@
-name: Build and deploy Django app to Azure Web App
+name: Build and Deploy Django App to Azure Web App
 
 on:
   push:
@@ -11,7 +11,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -27,7 +28,7 @@ jobs:
       - name: Prepare artifact
         run: |
           cd medical-ai-backend
-          zip -r ../artifact.zip .  # Zip the subfolder contents
+          zip -r ../artifact.zip .  # Zip the contents of the subfolder
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -48,7 +49,7 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          auth-type: service-principal
+          auth-type: SERVICE_PRINCIPAL
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_86CFB24666EF4DBABA1E66983240CF53 }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_941AD0E0D4CB47AA95AE5DB62E8BBDD2 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_95F8D19C92D4466B9E0DAA6C23DD875F }}
@@ -57,4 +58,4 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'medical-django-backend'
-          package: 'artifact.zip'  # Use the artifact created in the build job
+          package: 'artifact.zip'
