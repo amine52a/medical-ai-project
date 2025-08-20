@@ -65,5 +65,6 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'medical-django-backend'
-          package: 'medical-ai-backend'  # <-- points to subfolder containing manage.py
+          package: 'artifact.zip'  # <-- reference the zip created in the build job
+
 
