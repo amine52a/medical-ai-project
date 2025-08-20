@@ -65,5 +65,5 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'medical-django-backend'
-    package: 'medical-ai-backend'  # <-- points to subfolder containing manage.py
+          package: 'medical-ai-backend'  # <-- points to subfolder containing manage.py
 
