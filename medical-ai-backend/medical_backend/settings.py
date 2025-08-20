@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-4#q+e6(h)n)9c3e*%mp!vobx*5y4y$uaf5#labol-#bn&-b2-q
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['medical-django-backend-anbud7dbe7abava2.francecentral-01.azurewebsites.net']
 
 
 # Application definition
