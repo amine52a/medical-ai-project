@@ -18,23 +18,28 @@ jobs:
       - name: Set up Python version
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'   # Changed from 3.13 to 3.11 for Azure compatibility
+          python-version: '3.11'
 
-      - name: Create and start virtual environment
+      - name: Create and activate virtual environment
         run: |
           python -m venv venv
           source venv/bin/activate
 
       - name: Install dependencies
-        run: pip install -r medical-ai-backend/requirements.txt   # Fixed path
+        run: |
+          cd medical-ai-backend
+          pip install -r requirements.txt
 
-      - name: Upload artifact for deployment jobs
+      - name: Prepare artifact
+        run: |
+          cd medical-ai-backend
+          zip -r ../artifact.zip .  # zip all contents of subfolder into a flat zip
+
+      - name: Upload artifact for deployment
         uses: actions/upload-artifact@v4
         with:
           name: python-app
-          path: |
-            .
-            !venv/
+          path: artifact.zip
 
   deploy:
     runs-on: ubuntu-latest
@@ -44,7 +49,7 @@ jobs:
       contents: read
 
     steps:
-      - name: Download artifact from build job
+      - name: Download artifact
         uses: actions/download-artifact@v4
         with:
           name: python-app
@@ -58,9 +63,6 @@ jobs:
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
-        id: deploy-to-webapp
         with:
           app-name: 'medical-django-backend'
-          package: 'medical-ai-backend'   # <--- add this
-
-
+          package: artifact.zip
